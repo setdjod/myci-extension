@@ -87,3 +87,4 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 codeigniter-extension-0.0.5.vsix
+myci-extension-0.0.1.vsix
