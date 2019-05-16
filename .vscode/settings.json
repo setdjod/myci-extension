@@ -1,0 +1,12 @@
+{
+  "editor.wordWrap": "on",
+  "editor.formatOnPaste": true,
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.maxTokenizationLineLength": 100000,
+  "editor.snippetSuggestions": "top",
+  "editor.detectIndentation": true,
+  "editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 12,
+  "editor.tabSize": 2
+}

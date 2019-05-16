@@ -1,0 +1,63 @@
+{
+  "name": "myci-extension",
+  "displayName": "My Codeigniter Extension",
+  "description": "Codeigniter Package Extension for Visual Studio Code",
+  "icon": "https://raw.githubusercontent.com/setdjod/codeignter_package/master/assets/icon.png",
+  "version": "1.0",
+  "publisher": "setiawandjodi",
+  "repository": "https://github.com/setdjod/myci-extension",
+  "engines": {
+    "vscode": "^1.24.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:make.controller",
+    "onCommand:make.model",
+    "onCommand:make.helper",
+    "onCommand:make.library",
+    "onCommand:make.language",
+    "onCommand:make.htaccess"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "make.controller",
+        "title": " Codeigniter make:controller"
+      },
+      {
+        "command": "make.model",
+        "title": " Codeigniter make:model"
+      },
+      {
+        "command": "make.helper",
+        "title": " Codeigniter make:helper"
+      },
+      {
+        "command": "make.library",
+        "title": " Codeigniter  make:library"
+      },
+      {
+        "command": "make.language",
+        "title": " Codeigniter  make:language"
+      },
+      {
+        "command": "make.htaccess",
+        "title": " Codeigniter  make:htaccess"
+      }
+    ]
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.6.1",
+    "vscode": "^1.1.6",
+    "eslint": "^4.11.0",
+    "@types/node": "^7.0.43",
+    "@types/mocha": "^2.2.42"
+  }
+}
