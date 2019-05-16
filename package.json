@@ -2,7 +2,7 @@
   "name": "myci-extension",
   "displayName": "My Codeigniter Extension",
   "description": "Codeigniter Package Extension for Visual Studio Code",
-  "icon": "https://raw.githubusercontent.com/setdjod/codeignter_package/master/assets/icon.png",
+  "icon": "https://raw.githubusercontent.com/setdjod/myci-extension/master/assets/icon.png",
   "version": "1.0",
   "publisher": "setiawandjodi",
   "repository": "https://github.com/setdjod/myci-extension",
