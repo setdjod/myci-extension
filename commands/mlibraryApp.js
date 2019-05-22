@@ -8,7 +8,7 @@ module.exports = function(vscode, fs, path, pathdir) {
       vscode.window.showErrorMessage('You should insert language name.');
     } else {
       var name = capitalize.capitalize(val);
-      var pathfile = path.join(`${pathdir}/application/libraries`, name) + '.php';
+      var pathfile = path.join(`${pathdir}/app/libraries`, name) + '.php';
       fs.access(pathfile, function(err) {
         if (!err) {
           vscode.window.showWarningMessage(`Name of library ${name} already exists!`);
@@ -57,7 +57,7 @@ class ${name}
 }
 
 /* End of file ${name}.php */
-/* Location: ./application/libraries/${name}.php */`);
+/* Location: ./app/libraries/${name}.php */`);
             fs.close(fd);
             var openPath = vscode.Uri.file(pathfile);
             vscode.workspace.openTextDocument(openPath).then(function(val) {

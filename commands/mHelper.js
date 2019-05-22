@@ -2,37 +2,56 @@ var capitalize = require('./functions');
 module.exports = function(vscode, fs, path, pathdir) {
   vscode.window.showInputBox({
     prompt: 'name of helper',
-    placeHolder: 'set helper model'
+    placeHolder: 'set helper name without _helper'
   }).then(function(val) {
     if (val.length == 0) {
       vscode.window.showErrorMessage('You should insert file name.');
     } else {
-      var pathfile = path.join(`${pathdir}/app/helpers`, `${capitalize.capitalize(val)}_helper`) + '.php';
+      var name = `${capitalize.capitalize(val)}_helper`;
+      var pathfile = path.join(`${pathdir}/application/helpers`, `${name}`) + '.php';
       fs.access(pathfile, function(err) {
         if (!err) {
-          vscode.window.showWarningMessage('Name of file already exists!');
+          vscode.window.showWarningMessage(`Name of helper ${name} already exists!`);
         } else {
           fs.open(pathfile, 'w+', function(err, fd) {
             if (err) throw err;
             fs.writeFileSync(fd, `<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
- * Helpers ${capitalize.capitalize(val)}
+ * Helpers ${name}
  *
- * @author  Setiawan Jodi <jodisetiawan@fisip-untirta.ac.id>
- * @param   ...
- * @return  ...
+ * This Helpers for ...
+ * 
+ * @package   CodeIgniter
+ * @category  Helpers
+ * @author    Setiawan Jodi <jodisetiawan@fisip-untirta.ac.id>
+ * @link      https://github.com/setdjod/myci-extension/
  *
  */
 
-function ${capitalize.capitalize(val)}()
-{
+// ------------------------------------------------------------------------
+
+if (!function_exists('test')) {
+  /**
+   * Test
+   *
+   * This test helpers
+   *
+   * @param   ...
+   * @return  ...
+   */
+  function test()
+  {
+    // 
+  }
 }
 
-/* End of file ${capitalize.capitalize(val)}.php */
-/* Location: ./app/helpers/${capitalize.capitalize(val)}.php */`);
+// ------------------------------------------------------------------------
+
+/* End of file ${name}.php */
+/* Location: ./application/helpers/${name}.php */`);
             fs.close(fd);
             var openPath = vscode.Uri.file(pathfile); //A request file path
             vscode.workspace.openTextDocument(openPath).then(function(val) {

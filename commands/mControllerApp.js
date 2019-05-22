@@ -1,31 +1,31 @@
 var capitalize = require('./functions');
 module.exports = function(vscode, fs, path, pathdir) {
   vscode.window.showInputBox({
-    prompt: 'name of library',
-    placeHolder: 'set helper library'
+    prompt: 'name of controller',
+    placeHolder: 'set controller name'
   }).then(function(val) {
     if (val.length == 0) {
-      vscode.window.showErrorMessage('You should insert language name.');
+      vscode.window.showErrorMessage('You should insert file name.');
     } else {
       var name = capitalize.capitalize(val);
-      var pathfile = path.join(`${pathdir}/application/libraries`, name) + '.php';
+      var pathfile = path.join(`${pathdir}/app/controllers`, name) + '.php';
       fs.access(pathfile, function(err) {
         if (!err) {
-          vscode.window.showWarningMessage(`Name of library ${name} already exists!`);
+          vscode.window.showWarningMessage(`Name of controller ${name} already exists!`);
         } else {
           fs.open(pathfile, 'w+', function(err, fd) {
             if (err) throw err;
             fs.writeFileSync(fd, `<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
- * Libraries ${name}
+ * Controller ${name}
  *
- * This Libraries for ...
- * 
- * @package		CodeIgniter
- * @category	Libraries
+ * This controller for ...
+ *
+ * @package   CodeIgniter
+ * @category  Controller
  * @author    Setiawan Jodi <jodisetiawan@fisip-untirta.ac.id>
  * @link      https://github.com/setdjod/myci-extension/
  * @param     ...
@@ -33,31 +33,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 
-class ${name}
+class ${name} extends CI_Controller
 {
-
-  // ------------------------------------------------------------------------
-
+    
   public function __construct()
   {
-    // 
+    parent::__construct();
   }
-
-  // ------------------------------------------------------------------------
-
-
-  // ------------------------------------------------------------------------
 
   public function index()
   {
     // 
   }
 
-  // ------------------------------------------------------------------------
 }
 
+
 /* End of file ${name}.php */
-/* Location: ./application/libraries/${name}.php */`);
+/* Location: ./app/controllers/${name}.php */`);
             fs.close(fd);
             var openPath = vscode.Uri.file(pathfile);
             vscode.workspace.openTextDocument(openPath).then(function(val) {

@@ -14,34 +14,58 @@
   ],
   "activationEvents": [
     "onCommand:make.controller",
+    "onCommand:make.controllerApp",
     "onCommand:make.model",
+    "onCommand:make.modelApp",
     "onCommand:make.helper",
+    "onCommand:make.helperApp",
     "onCommand:make.library",
+    "onCommand:make.libraryApp",
     "onCommand:make.language",
+    "onCommand:make.languageApp",
     "onCommand:make.htaccess"
   ],
   "main": "./extension",
   "contributes": {
-    "commands": [
-      {
+    "commands": [{
         "command": "make.controller",
         "title": " Codeigniter make:controller"
+      },
+      {
+        "command": "make.controllerApp",
+        "title": " Codeigniter make:controllerApp"
       },
       {
         "command": "make.model",
         "title": " Codeigniter make:model"
       },
       {
+        "command": "make.modelApp",
+        "title": " Codeigniter make:modelApp"
+      },
+      {
         "command": "make.helper",
         "title": " Codeigniter make:helper"
+      },
+      {
+        "command": "make.helperApp",
+        "title": " Codeigniter make:helperApp"
       },
       {
         "command": "make.library",
         "title": " Codeigniter  make:library"
       },
       {
+        "command": "make.libraryApp",
+        "title": " Codeigniter  make:libraryApp"
+      },
+      {
         "command": "make.language",
         "title": " Codeigniter  make:language"
+      },
+      {
+        "command": "make.languageApp",
+        "title": " Codeigniter  make:languageApp"
       },
       {
         "command": "make.htaccess",

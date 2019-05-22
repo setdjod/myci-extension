@@ -5,10 +5,15 @@ const vscode = require('vscode');
 const fs = require('fs');
 const path = require('path');
 const mController = require('./commands/mController');
+const mControllerApp = require('./commands/mControllerApp');
 const mModel = require('./commands/mModel');
+const mModelApp = require('./commands/mModelApp');
 const mHelper = require('./commands/mHelper');
+const mHelperApp = require('./commands/mHelperApp');
 const mLibrary = require('./commands/mlibrary');
+const mLibraryApp = require('./commands/mlibraryApp');
 const mLanguage = require('./commands/mLanguage');
+const mLanguageApp = require('./commands/mLanguageApp');
 const mHtaccess = require('./commands/mHtaccess');
 let pathwork = vscode.workspace.workspaceFolders[0].uri.fsPath;
 
@@ -30,9 +35,18 @@ function activate(context) {
 
   });
 
+  let controllerApp = vscode.commands.registerCommand('make.controllerApp', function() {
+    mControllerApp(vscode, fs, path, pathwork);
+
+  });
 
   let model = vscode.commands.registerCommand('make.model', function() {
     mModel(vscode, fs, path, pathwork);
+
+  });
+
+  let modelApp = vscode.commands.registerCommand('make.modelApp', function() {
+    mModelApp(vscode, fs, path, pathwork);
 
   });
 
@@ -40,27 +54,41 @@ function activate(context) {
     mHelper(vscode, fs, path, pathwork);
   });
 
+  let helperApp = vscode.commands.registerCommand('make.helperApp', function() {
+    mHelperApp(vscode, fs, path, pathwork);
+  });
+
   let library = vscode.commands.registerCommand('make.library', function() {
     mLibrary(vscode, fs, path, pathwork);
   });
 
+  let libraryApp = vscode.commands.registerCommand('make.libraryApp', function() {
+    mLibraryApp(vscode, fs, path, pathwork);
+  });
+
   let language = vscode.commands.registerCommand('make.language', function() {
     mLanguage(vscode, fs, path, pathwork);
+  });
+  
+  let languageApp = vscode.commands.registerCommand('make.languageApp', function() {
+    mLanguageApp(vscode, fs, path, pathwork);
   });
 
   let htaccess = vscode.commands.registerCommand('make.htaccess', function() {
     mHtaccess(vscode, fs, path, pathwork);
   });
 
-
   context.subscriptions.push(controller);
+  context.subscriptions.push(controllerApp);
   context.subscriptions.push(model);
+  context.subscriptions.push(modelApp);
   context.subscriptions.push(helper);
+  context.subscriptions.push(helperApp);
   context.subscriptions.push(library);
+  context.subscriptions.push(libraryApp);
   context.subscriptions.push(language);
+  context.subscriptions.push(languageApp);
   context.subscriptions.push(htaccess);
-
-
 
 }
 exports.activate = activate;

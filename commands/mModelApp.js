@@ -1,17 +1,17 @@
 var capitalize = require('./functions');
 module.exports = function(vscode, fs, path, pathdir) {
   vscode.window.showInputBox({
-    prompt: 'name of library',
-    placeHolder: 'set helper library'
+    prompt: 'name of model',
+    placeHolder: 'set model name without _model'
   }).then(function(val) {
     if (val.length == 0) {
-      vscode.window.showErrorMessage('You should insert language name.');
+      vscode.window.showErrorMessage('You should insert file name.');
     } else {
-      var name = capitalize.capitalize(val);
-      var pathfile = path.join(`${pathdir}/application/libraries`, name) + '.php';
+      var name = `${capitalize.capitalize(val)}_model`;
+      var pathfile = path.join(`${pathdir}/app/models`, name) + '.php';
       fs.access(pathfile, function(err) {
         if (!err) {
-          vscode.window.showWarningMessage(`Name of library ${name} already exists!`);
+          vscode.window.showWarningMessage(`Name of model ${name} already exists!`);
         } else {
           fs.open(pathfile, 'w+', function(err, fd) {
             if (err) throw err;
@@ -20,12 +20,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
  *
- * Libraries ${name}
+ * Model ${name}
  *
- * This Libraries for ...
+ * This Model for ...
  * 
  * @package		CodeIgniter
- * @category	Libraries
+ * @category	Model
  * @author    Setiawan Jodi <jodisetiawan@fisip-untirta.ac.id>
  * @link      https://github.com/setdjod/myci-extension/
  * @param     ...
@@ -33,31 +33,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 
-class ${name}
-{
+class ${name} extends CI_Model {
 
   // ------------------------------------------------------------------------
 
   public function __construct()
   {
-    // 
+    parent::__construct();
   }
 
   // ------------------------------------------------------------------------
 
 
   // ------------------------------------------------------------------------
-
   public function index()
   {
     // 
   }
 
   // ------------------------------------------------------------------------
+
 }
 
 /* End of file ${name}.php */
-/* Location: ./application/libraries/${name}.php */`);
+/* Location: ./app/models/${name}.php */`);
             fs.close(fd);
             var openPath = vscode.Uri.file(pathfile);
             vscode.workspace.openTextDocument(openPath).then(function(val) {
