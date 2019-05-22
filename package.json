@@ -27,7 +27,8 @@
   ],
   "main": "./extension",
   "contributes": {
-    "commands": [{
+    "commands": [
+      {
         "command": "make.controller",
         "title": " Codeigniter make:controller"
       },
