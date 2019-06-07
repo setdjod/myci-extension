@@ -5,3 +5,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 - Initial release
+
+## [1.0.2] - 2019-06-07
+### Modified mController with input box to retrieve type of controller
