@@ -9,7 +9,7 @@ module.exports = function(vscode, fs, path, pathdir) {
         } else {
             vscode.window.showInputBox({
                 prompt: 'type of controller',
-                placeHolder: 'set controller type | ej:CI/REST (default: CI)'
+                placeHolder: 'set controller type | ex:CI/REST (default: CI)'
             }).then(function(valType) {
                 if (valType.length == 0) {
                     var type = 'CI';
